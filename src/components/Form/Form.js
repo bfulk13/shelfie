@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
 class Form extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
 
         this.state = {
             imgURL: ``,
@@ -31,6 +31,14 @@ class Form extends Component{
         })
     }
 
+    addProduct = () => {
+        this.props.postProduct({
+            imgURL: this.props.imgURL,
+            prodName: this.props.prodName,
+            price: this.props.price
+        })
+    }
+
     render(){
         return(
             <div>
@@ -48,7 +56,7 @@ class Form extends Component{
                     onChange={ e => this.handlePrice(e.target.value) }
                 />
                 <button onClick={ () => this.cancelAdd() }>Cancel</button>
-                <button>Add to Inventory</button>
+                <button onClick={ () => this.addProduct() }>Add to Inventory</button>
             </div>
             
         )

@@ -1,5 +1,4 @@
 module.exports = {
-    // CREATE-POST
     newProduct: (req, res) => {
         const db = req.app.get('db');
         const { name, price, img } = req.body;
