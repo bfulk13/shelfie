@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/Header/Header';
 import Dashboard from './components/Dashboard/Dashboard';
 import Form from './components/Form/Form';
-import Product from './components/Product/Product';
 import axios from 'axios';
 
 class App extends Component {
@@ -11,7 +10,23 @@ class App extends Component {
     super()
 
     this.state = {
-      inventory: [],
+      inventory: [
+        {
+          name: `shirt`,
+          price: 30,
+          img: `www.shirt.com`
+        },
+        {
+          name: `pants`,
+          price: 40,
+          img: `www.pants.com`
+        },
+        {
+          name: `shoes`,
+          price: 50,
+          img: `www.shoes.com`
+        }
+      ],
       input: ``
     }
   }
@@ -42,20 +57,12 @@ deleteProduct = (id) => {
 
   render() {
     const {inventory} = this.state;
-    const mappedInventory = inventory.map( product => {
-      return (
-        <Product />
-      )
-    })
+    
     return (
       <div className="App">
         <Header />
         <Dashboard 
-          inventory={mappedInventory}
-          key={inventory.id}
-          name={inventory.name}
-          price={inventory.price}
-          img={inventory.img}
+          inventory={this.state.inventory}
         />
         <Form 
           postProduct={this.postProduct}
