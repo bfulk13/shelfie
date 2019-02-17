@@ -10,29 +10,14 @@ class App extends Component {
     super()
 
     this.state = {
-      inventory: [
-        {
-          name: `shirt`,
-          price: 30,
-          img: `www.shirt.com`
-        },
-        {
-          name: `pants`,
-          price: 40,
-          img: `www.pants.com`
-        },
-        {
-          name: `shoes`,
-          price: 50,
-          img: `www.shoes.com`
-        }
-      ],
+      inventory: [],
       input: ``
     }
   }
   
 componentDidMount(){
   axios.get('/api/inventory').then(res => {
+    console.log(res.data)
     this.setState({
       inventory: res.data
     })
@@ -62,10 +47,12 @@ deleteProduct = (id) => {
       <div className="App">
         <Header />
         <Dashboard 
-          inventory={this.state.inventory}
+          key={this.state.inventory.product_id}
+          inventory={inventory}
         />
         <Form 
           postProduct={this.postProduct}
+          key={this.state.inventory.product_id}
         />
       </div>
     );

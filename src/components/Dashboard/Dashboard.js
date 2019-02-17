@@ -6,13 +6,12 @@ class Dashboard extends Component{
         super(props)
 
         this.state = {
-            product_id: props.product_id,
-            name: props.name,
-            price: props.price,
-            img: props.img
+            product_id: this.props.product_id,
+            name: this.props.name,
+            price: this.props.price,
+            img: this.props.img
         }
     }
-
     render(){
         const mappedInventory = this.props.inventory.map( product => {
             return(
@@ -24,7 +23,6 @@ class Dashboard extends Component{
                 />
             )
         })
-        console.log(mappedInventory)
         return(
             <div>
                 <h1>Dashboard Component</h1>
