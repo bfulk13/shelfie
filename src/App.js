@@ -4,6 +4,8 @@ import Header from './components/Header/Header';
 import Dashboard from './components/Dashboard/Dashboard';
 import Form from './components/Form/Form';
 import axios from 'axios';
+import Routes from './routes';
+import {HashRouter as Router} from 'react-router-dom';
 
 class App extends Component {
   constructor(){
@@ -44,7 +46,7 @@ deleteProduct = (id) => {
     const {inventory} = this.state;
     
     return (
-      <div className="App">
+      <div className="App"> 
         <Header />
         <Dashboard 
           key={this.state.inventory.product_id}

@@ -32,14 +32,11 @@ class Form extends Component{
     }
 
     addProduct = () => {
-        if(this.state.editing){
-            this.props.postProduct({
-                imgURL: this.props.imgURL,
-                prodName: this.props.prodName,
-                price: this.props.price
-            })
-        }
-        this.setState({ editing: false })
+        this.props.postProduct({
+            imgURL: this.props.imgURL,
+            prodName: this.props.prodName,
+            price: this.props.price
+        })
     }
 
     render(){

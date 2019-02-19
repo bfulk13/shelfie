@@ -4,9 +4,9 @@ export default function Product(props){
     return(
         <div>
             <h1>Product</h1>
-            <p>Name: {this.props.name}</p>
-            <p>Price: {this.props.price}</p>
-            <img src="{this.props.img}" alt="{this.props.name}"/>
+            <p>Name: {props.name}</p>
+            <p>Price: {props.price}</p>
+            <img src="{props.img}" alt="product"/>
         </div>
     )
 }
