@@ -13,34 +13,40 @@ class App extends Component {
 
     this.state = {
       inventory: [],
-      input: ``
+      currItem: {}
     }
   }
   
 componentDidMount(){
+  this.getInventory();
+}
+
+getInventory = () => {
   axios.get('/api/inventory').then(res => {
-    console.log(res.data)
+    // console.log(res.data)
     this.setState({
       inventory: res.data
     })
   })
 }
 
-postProduct = () => {
-  const {input} = this.state;
-  axios.post('/api/product', { inventory: input }).then(res => {
-    this.setState({
-      inventory: res.data,
-      input: ``
-    })
+handleEdit = (event) => {
+  this.setState({
+    currItem: event
   })
 }
 
-deleteProduct = (id) => {
-  axios.delete(`/api/inventory/${id}`).then(res => {
-    this.setState({ inventory: res.data })
-  })
-}
+// postProduct = () => {
+//   const {input} = this.state;
+//   axios.post('/api/product', { inventory: input }).then(res => {
+//     this.setState({
+//       inventory: res.data,
+//       input: ``
+//     })
+//   })
+// }
+
+
 
   render() {
     const {inventory} = this.state;
@@ -51,10 +57,13 @@ deleteProduct = (id) => {
         <Dashboard 
           key={this.state.inventory.product_id}
           inventory={inventory}
+          refresh={this.getInventory}
+          handleEdit={this.handleEdit}
         />
         <Form 
           postProduct={this.postProduct}
           key={this.state.inventory.product_id}
+          refresh={this.getInventory}
         />
       </div>
     );

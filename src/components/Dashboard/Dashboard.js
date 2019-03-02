@@ -1,25 +1,35 @@
 import React, {Component} from 'react';
-import Product from '../Product/Product'
+import Product from '../Product/Product';
+import axios from 'axios';
 
 class Dashboard extends Component{
-    constructor(props){
-        super(props)
+    // constructor(props){
+    //     super(props)
 
-        this.state = {
-            product_id: this.props.product_id,
-            name: this.props.name,
-            price: this.props.price,
-            img: this.props.img
-        }
+    //     this.state = {
+    //         product_id: this.props.product_id,
+    //         name: this.props.name,
+    //         price: this.props.price,
+    //         img: this.props.img
+    //     }
+    // }
+
+    deleteProduct = (id) => {
+        axios.delete(`/api/inventory/${id}`).then(res => {
+            this.setState({ inventory: res.data })
+        })
     }
+
     render(){
         const mappedInventory = this.props.inventory.map( product => {
+            const { id } = product;
             return(
                 <Product 
-                    key={this.state.product_id}
-                    name={this.state.name}
-                    price={this.state.price}
-                    img={this.state.img}
+                    key={id}
+                    product={product}
+                    imgUrl={this.props.img}
+                    delete={this.deleteProduct}
+                    edit={this.props.handleEdit}
                 />
             )
         })
